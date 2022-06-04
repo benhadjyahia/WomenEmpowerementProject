@@ -1,0 +1,17 @@
+https://badgen.net/
+
+https://badgen.net/badge/:subject/:status/:color?icon=github
+
+
+{
+
+  "address": "Sousse, Tunisia",
+  "birthDate": "1998-08-22T15:41:22.297Z",
+  "email": "aymen@esprit.tn",
+  "locked": false,
+  "name": "Aymen Zaabar",
+  "password": "SeifDenguezli*1",
+  "phoneNumber": "50212322",
+  "role": "USER",
+  "username": "aymenzaabar"
+}

@@ -1,0 +1,131 @@
+using PS.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace PS.Service
+{
+   public class ManageProduct
+    {
+        IList<Product> products = new List<Product>() ;
+        
+   
+    public ManageProduct(IList<Product> products)
+    {
+        this.products = products;
+            }
+
+    public IList<Product> Get5Chemical(double price)
+        {
+		// LinQ Methode
+            var query = from p in products      
+                        where p.Price >= price && p is Chemical
+                        select p;
+            return query.Take(5).ToList();
+	
+		// Lambda Expression
+		return product.where(p=>p.Price > price && p is Chemical).Take(5).toList();
+        }
+    public IList<Product> GetProductPrice(double price)
+        {
+		// LinQ Methode
+            var query = from p in products
+                        where p.Price >= price && p is Chemical
+                        select p;
+            return query.Skip(2).ToList();
+
+		// Lambda Expression
+		return product.where(p=>p.Price > price).Skip(2).ToList();
+           
+        }
+    public double GetAveragePrice()
+        {
+		// LinQ Methode
+            var query = from p in products
+                        
+                        select p.Price;
+            return query.Average();
+
+		// Lambda Expression
+		return product.Average(p => p.Price); // oubien
+		return products.Select(p => p.Price).Average(); // Retourne une proprieté
+        }
+    public Product GetMaxPrice()
+        {
+		// LinQ Methode
+            var query = from p in products
+                      
+                        select p.Price;
+            
+            return (Product) (from p1 in products
+                         where p1.Price >= query.Max()
+                         select p1);
+
+		// Lambda Expression
+		double max = products.Max(p => p.Price)
+		return products.where(p => p.Price ==max).FirstOrDefault();
+        
+
+        }
+
+    public int GetCountProduct(string city)
+        {
+
+            var query = from p in products.OfType<Chemical>()
+                        where p.Equals(city) && p is Chemical
+                        select p;
+            return query.Count();
+
+        }
+    
+   public IList<Chemical> GetChemicalCity()
+    {
+        var query =( from p in products.OfType<Chemical>()
+                    orderby p.City
+                    select p);
+        return query.ToList();
+    }
+
+
+    public IList<Chemical> GetChemicalGroupByCity()
+    {
+        return (IList<Chemical>)(from p in products.OfType<Chemical>()
+                                 orderby p.City
+                                 group p by p.City).ToList();
+
+    }
+
+    public IGrouping<String,IEnumerable<Chemical>> GetChemicalGroupByCity1()
+        {
+            return (IGrouping<String, IEnumerable<Chemical>>)(from p in products.OfType<Chemical>()
+                                                              orderby p.City
+                                                              group p by p.City);
+
+        }
+
+    public void DisplayChemicalGroupByCity1()
+        {
+
+            IGrouping<String, IEnumerable<Chemical>> result =
+             (IGrouping<String, IEnumerable<Chemical>>)(from p in products.OfType<Chemical>()
+                                                              orderby p.City
+                                                              group p by p.City);
+            foreach (Chemical ChemicalByCity in result)
+            {
+                Console.WriteLine("city = " + ChemicalByCity.City);
+                foreach (Chemical v in result.ToList())
+                {
+                    Console.WriteLine(" Produch : " + v.Name);
+                }
+            }
+            
+        }
+    }
+}
+
+
+
+
+
+

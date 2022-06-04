@@ -1,0 +1,6 @@
+npm install bootstrap jquery
+npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-brands-svg-icons
+npm install angularx-social-login
+https://tudip.com/blog-post/how-to-install-angular-material/
+
+After cloning the project : npm install ==> Install all used dependacies 

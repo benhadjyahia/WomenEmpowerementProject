@@ -1,0 +1,8 @@
+{
+	"name": "WomenEmppowerment",
+	"buildpacks": [
+		{
+			"url": "heroku/maven"
+		}
+	]
+}
